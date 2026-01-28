@@ -38,14 +38,20 @@ export const usePersonConfig = defineStore('person', () => {
         return data
     })
 
-    // 获取已中奖人员名单
+    // 获取已中奖人员名单（按最后中奖时间倒序）
     const getAlreadyPersonList = computed(() => {
-        return personConfig.value.allPersonList.filter((item: IPersonConfig) => {
-            return item.isWin === true
-        })
+        return personConfig.value.allPersonList
+            .filter((item: IPersonConfig) => item.isWin === true)
+            .sort((a, b) => {
+                const timeA = a.prizeTime.length > 0 ? a.prizeTime[a.prizeTime.length - 1] : ''
+                const timeB = b.prizeTime.length > 0 ? b.prizeTime[b.prizeTime.length - 1] : ''
+                return timeB.localeCompare(timeA)
+            })
     })
-    // 获取中奖人员详情
-    const getAlreadyPersonDetail = computed(() => personConfig.value.alreadyPersonList)
+    // 获取中奖人员详情（按中奖时间倒序）
+    const getAlreadyPersonDetail = computed(() => {
+        return [...personConfig.value.alreadyPersonList].reverse()
+    })
     // 获取未中奖人员名单
     const getNotPersonList = computed(() => personConfig.value.allPersonList.filter((item: IPersonConfig) => {
         return item.isWin === false
