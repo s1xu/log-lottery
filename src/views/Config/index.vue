@@ -71,28 +71,11 @@ function skip(path: string) {
     <router-view class="flex-1 mt-5" />
   </div>
   <footer class="p-10 rounded footer footer-center bg-base-200 h-70 flex flex-col gap-4 text-base-content">
-    <nav class="grid grid-flow-col gap-4">
-      <a class="cursor-pointer link link-hover text-inherit" target="_blank" href="https://1kw20.fun">{{ t('footer.self-reflection') }}</a>
-    </nav>
+   
     <nav>
-      <a class="cursor-pointer link link-hover text-inherit" target="_blank" href="https://1kw20.fun">{{ t('footer.thiefEasy') }}</a>
-    </nav>
-    <nav>
-      <div class="grid grid-flow-col gap-4">
-        <a href="https://github.com/LOG1997/log-lottery" target="_blank" class="cursor-pointer text-inherit">
-          <svg-icon name="github" />
-        </a>
-        <a href="https://twitter.com/TaborSwift" target="_blank" class="cursor-pointer "><svg-icon name="twitter" /></a>
-        <a href="https://www.instagram.com/log.z1997/" target="_blank" class="cursor-pointer ">
-          <svg-icon name="instagram" />
-        </a>
-      </div>
+     
     </nav>
     <aside>
-      <a class="p-0 m-0 hover:text-primary" href="https://beian.miit.gov.cn/" target="_blank">
-        蜀ICP备2021028666号
-      </a>
-      <p>Copyright © {{ currentYear }} - All right reserved by <a class="link link-primary" href="https://github.com/LOG1997" target="_blank">log1997</a></p>
     </aside>
   </footer>
 </template>
