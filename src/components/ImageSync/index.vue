@@ -2,7 +2,7 @@
 import type { IFileData } from '../FileUpload/type'
 import type { IImage } from '@/types/storeType'
 import localforage from 'localforage'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 interface IProps {
     imgItem: IImage
@@ -28,9 +28,13 @@ async function getImageStoreItem(item: IImage): Promise<string> {
     return image
 }
 
-onMounted(async () => {
+async function updateImage() {
     imgUrl.value = await getImageStoreItem(props.imgItem)
-})
+}
+
+onMounted(updateImage)
+
+watch(() => props.imgItem, updateImage, { deep: true })
 </script>
 
 <template>
