@@ -22,7 +22,7 @@ export function usePrizeList(temporaryPrizeRef: any) {
     const { getIsMobile: isMobile } = storeToRefs(system)
 
     const selectedPrize = ref<IPrizeConfig | null>(null)
-    const prizeShow = ref(structuredClone(isShowPrizeList.value))
+    const prizeShow = ref(false)
 
     function addTemporaryPrize() {
         temporaryPrizeRef.value.showDialog()
