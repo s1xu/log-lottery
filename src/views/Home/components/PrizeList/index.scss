@@ -2,6 +2,18 @@
     width: 120px;
 }
 
+.prize-wrapper {
+    transition: transform 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.prize-expanded {
+    transform: translateX(0);
+}
+
+.prize-collapsed {
+    transform: translateX(-280px);
+}
+
 .prize-list-enter-active {
     -webkit-animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
     animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

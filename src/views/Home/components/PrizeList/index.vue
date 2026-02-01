@@ -44,17 +44,18 @@ const {
         :add-temporary-prize="addTemporaryPrize"
         :delete-temporary-prize="deleteTemporaryPrize"
       />
-      <OfficialPrizeList
-        v-show="!temporaryPrize.isShow"
-        v-model:prize-show="prizeShow"
-        :temporary-prize-show="temporaryPrize.isShow"
-        :local-prize-list="localPrizeList"
-        :current-prize="currentPrize"
-        :is-mobile="isMobile"
-        :add-temporary-prize="addTemporaryPrize"
-      />
+      <div v-show="!temporaryPrize.isShow" class="flex items-center h-full prize-wrapper" :class="prizeShow ? 'prize-expanded' : 'prize-collapsed'">
+        <OfficialPrizeList
+          v-model:prize-show="prizeShow"
+          :temporary-prize-show="temporaryPrize.isShow"
+          :local-prize-list="localPrizeList"
+          :current-prize="currentPrize"
+          :is-mobile="isMobile"
+          :add-temporary-prize="addTemporaryPrize"
+        />
+        <OperationButton v-model:prize-show="prizeShow" :add-temporary-prize="addTemporaryPrize" />
+      </div>
     </div>
-    <OperationButton v-if="!temporaryPrize.isShow" v-model:prize-show="prizeShow" :add-temporary-prize="addTemporaryPrize" />
   </div>
 </template>
 
