@@ -116,11 +116,11 @@ defineExpose({
       </div>
       <div class="modal-action">
         <form method="dialog" class="flex gap-3">
-          <button class="btn btn-sm" @click="submitTemporaryPrize">
-            {{ t('button.confirm') }}
-          </button>
-          <button class="btn btn-sm">
+          <button class="btn btn-sm btn-ghost">
             {{ t('button.cancel') }}
+          </button>
+          <button class="btn btn-sm btn-primary" @click="submitTemporaryPrize">
+            {{ t('button.confirm') }}
           </button>
         </form>
       </div>
