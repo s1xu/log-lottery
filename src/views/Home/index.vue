@@ -38,7 +38,7 @@ const { getTopTitle: topTitle, getTextColor: textColor, getTextSize: textSize, g
     />
   </div>
   <StarsBackground :home-background="homeBackground" />
-  <PrizeList class="absolute left-0 top-32" />
+  <PrizeList class="absolute left-0 top-32" :current-status="currentStatus" />
 </template>
 
 <style scoped lang="scss">

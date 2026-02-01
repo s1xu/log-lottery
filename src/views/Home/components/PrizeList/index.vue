@@ -1,10 +1,16 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
+import CurrentPrizeCard from './parts/CurrentPrizeCard.vue'
 import OfficialPrizeList from './parts/OfficialPrizeList/index.vue'
 import OperationButton from './parts/OperationButton.vue'
 import TemporaryDialog from './parts/TemporaryDialog.vue'
 import TemporaryList from './parts/TemporaryList.vue'
 import { usePrizeList } from './usePrizeList'
+import { LotteryStatus } from '@/views/Home/type'
+
+defineProps<{
+    currentStatus: LotteryStatus
+}>()
 
 const temporaryPrizeRef = ref()
 const {
@@ -44,17 +50,20 @@ const {
         :add-temporary-prize="addTemporaryPrize"
         :delete-temporary-prize="deleteTemporaryPrize"
       />
-      <div v-show="!temporaryPrize.isShow" class="flex items-center h-full prize-wrapper" :class="prizeShow ? 'prize-expanded' : 'prize-collapsed'">
-        <OfficialPrizeList
-          v-model:prize-show="prizeShow"
-          :temporary-prize-show="temporaryPrize.isShow"
-          :local-prize-list="localPrizeList"
-          :current-prize="currentPrize"
-          :is-mobile="isMobile"
-          :add-temporary-prize="addTemporaryPrize"
-        />
-        <OperationButton v-model:prize-show="prizeShow" :add-temporary-prize="addTemporaryPrize" />
-      </div>
+      <template v-else>
+        <CurrentPrizeCard v-show="!prizeShow && currentStatus !== LotteryStatus.init" :current-prize="currentPrize" />
+        <div v-show="!temporaryPrize.isShow" class="flex items-center h-full prize-wrapper" :class="prizeShow ? 'prize-expanded' : 'prize-collapsed'">
+          <OfficialPrizeList
+            v-model:prize-show="prizeShow"
+            :temporary-prize-show="temporaryPrize.isShow"
+            :local-prize-list="localPrizeList"
+            :current-prize="currentPrize"
+            :is-mobile="isMobile"
+            :add-temporary-prize="addTemporaryPrize"
+          />
+          <OperationButton v-model:prize-show="prizeShow" :add-temporary-prize="addTemporaryPrize" />
+        </div>
+      </template>
     </div>
   </div>
 </template>
