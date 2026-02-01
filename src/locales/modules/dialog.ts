@@ -11,6 +11,7 @@ export const dialogEn = {
     uploadFileTitle: 'Upload File',
     uploadImageTitle: 'Upload Image',
     uploadAudioTitle: 'Upload Audio',
+    dialogQuitLottery: 'Canceling will not record the current lottery result. Do you want to continue?',
 }
 
 export const dialogZhCn = {
@@ -26,6 +27,7 @@ export const dialogZhCn = {
     uploadFileTitle: '上传文件',
     uploadImageTitle: '上传图片',
     uploadAudioTitle: '上传音频',
+    dialogQuitLottery: '取消将不会记录本次抽奖结果，是否继续？',
 }
 
 export const dialog = {

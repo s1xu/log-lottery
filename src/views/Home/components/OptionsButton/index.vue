@@ -1,6 +1,7 @@
 <script setup lang='ts'>
-import { toRefs } from 'vue'
+import { ref, toRefs } from 'vue'
 import { useI18n } from 'vue-i18n'
+import Dialog from '@/components/Dialog/index.vue'
 import { LotteryStatus } from '@/views/Home/type'
 
 interface Props {
@@ -16,6 +17,18 @@ const props = defineProps<Props>()
 
 const { currentStatus, tableData, enterLottery, startLottery, stopLottery, continueLottery, quitLottery } = toRefs(props)
 const { t } = useI18n()
+
+const quitDialogVisible = ref(false)
+const quitDialogRef = ref()
+
+function showQuitConfirm() {
+    quitDialogVisible.value = true
+    quitDialogRef.value?.showDialog()
+}
+
+function confirmQuit() {
+    quitLottery.value()
+}
 </script>
 
 <template>
@@ -58,7 +71,7 @@ const { t } = useI18n()
       </div>
 
       <div class="start">
-        <button class="btn-stars btn-cancel" @click="quitLottery">
+        <button class="btn-stars btn-cancel" @click="showQuitConfirm">
           <strong>{{ t('button.cancel') }}</strong>
           <div id="container-stars">
             <div id="stars" />
@@ -71,6 +84,14 @@ const { t } = useI18n()
         </button>
       </div>
     </div>
+
+    <Dialog
+      ref="quitDialogRef"
+      v-model:visible="quitDialogVisible"
+      :title="t('dialog.titleTip')"
+      :desc="t('dialog.dialogQuitLottery')"
+      :submit-func="confirmQuit"
+    />
   </div>
 </template>
 

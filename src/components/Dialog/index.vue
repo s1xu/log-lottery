@@ -60,10 +60,10 @@ const { title, desc, cancelText, submitText, submitFunc, cancelFunc = defaultCan
       <div class="modal-action" :class="{ 'flex justify-center': footer === 'center' }">
         <form method="dialog" class="flex gap-3">
           <!-- if there is a button in form, it will close the modal -->
-          <button class="btn" @click="cancelFunc">
+          <button class="btn btn-ghost" @click="cancelFunc">
             {{ cancelText }}
           </button>
-          <button class="btn" @click="submitFunc">
+          <button class="btn btn-primary" @click="submitFunc">
             {{ submitText }}
           </button>
         </form>
