@@ -2,6 +2,13 @@
     cursor: default;
     text-align: center;
     user-select: none;
+    // 优化 Windows 下 CSS 3D 渲染清晰度
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 
     .card-id {
         position: absolute;
@@ -54,6 +61,13 @@
 .lucky-element-card {
     cursor: default;
     user-select: none;
+    // 优化 Windows 下 CSS 3D 渲染清晰度
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 
     &::before {
         background-color: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
