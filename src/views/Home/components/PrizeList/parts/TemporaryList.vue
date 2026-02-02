@@ -67,16 +67,16 @@ const shouldScroll = computed(() => {
 <style scoped>
 .scroll-text {
     display: inline-block;
-    padding-left: 100%;
-    animation: scroll-left 6s linear infinite;
+    animation: scroll-left 3s ease-in-out infinite alternate;
+    will-change: transform;
 }
 
 @keyframes scroll-left {
-    0% {
+    from {
         transform: translateX(0);
     }
-    100% {
-        transform: translateX(-200%);
+    to {
+        transform: translateX(calc(-100% + 7rem));
     }
 }
 </style>
