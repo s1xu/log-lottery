@@ -13,6 +13,10 @@ const props = defineProps({
             url: '',
         }),
     },
+    backgroundColor: {
+        type: String,
+        default: '#000000',
+    },
 })
 const imageDbStore = localforage.createInstance({
     name: 'imgStore',
@@ -64,7 +68,7 @@ onUnmounted(() => {
   <div v-if="homeBackground.url" class="home-background w-screen h-screen overflow-hidden">
     <img :src="imgUrl" class="w-full h-full object-cover" alt="">
   </div>
-  <div v-else ref="starRef" class="w-screen h-screen overflow-hidden" />
+  <div v-else ref="starRef" class="w-screen h-screen overflow-hidden" :style="{ backgroundColor: backgroundColor }" />
 </template>
 
 <style lang='scss' scoped>

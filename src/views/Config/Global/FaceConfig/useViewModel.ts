@@ -26,6 +26,7 @@ export function useViewModel() {
         getIsShowPrizeList: isShowPrizeList,
         getLanguage: userLanguage,
         getBackground: backgroundImage,
+        getBackgroundColor: backgroundColor,
         getFont: currentFont,
         getTitleFont: currentTitleFont,
         getTitleFontSyncGlobal: titleFontSyncGlobal,
@@ -50,6 +51,7 @@ export function useViewModel() {
     const isShowAvatarValue = ref(structuredClone(isShowAvatar.value))
     const patternColorValue = ref(structuredClone(patternColor.value))
     const backgroundImageValue = ref(backgroundImage.value)
+    const backgroundColorValue = ref(structuredClone(backgroundColor.value))
     const currentFontValue = ref(structuredClone(currentFont.value))
     const currentTitleFontValue = ref(structuredClone(currentTitleFont.value))
     const titleFontSyncGlobalValue = ref(structuredClone(titleFontSyncGlobal.value))
@@ -177,6 +179,9 @@ export function useViewModel() {
     watch(backgroundImageValue, (val) => {
         globalConfig.setBackground(val)
     })
+    watch(backgroundColorValue, (val: string) => {
+        globalConfig.setBackgroundColor(val)
+    })
     watch(currentFontValue, (val) => {
         globalConfig.setFont(val)
         document.documentElement.style.setProperty('--app-font-family', `"${val}", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif`)
@@ -222,6 +227,7 @@ export function useViewModel() {
         isRowCountChange,
         themeValue,
         backgroundImageValue,
+        backgroundColorValue,
         cardColorValue,
         luckyCardColorValue,
         textColorValue,

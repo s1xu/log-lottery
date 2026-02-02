@@ -23,6 +23,7 @@ const {
     isRowCountChange,
     themeValue,
     backgroundImageValue,
+    backgroundColorValue,
     cardColorValue,
     luckyCardColorValue,
     textColorValue,
@@ -72,6 +73,7 @@ const {
       <ThemeSetting
         v-model:theme-value="themeValue"
         v-model:background-image-value="backgroundImageValue"
+        v-model:background-color-value="backgroundColorValue"
         v-model:card-color-value="cardColorValue"
         v-model:lucky-card-color-value="luckyCardColorValue"
         v-model:text-color-value="textColorValue"

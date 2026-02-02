@@ -26,6 +26,7 @@ export const useGlobalConfig = defineStore('global', {
                     patternColor: '#1b66c9',
                     patternList: defaultPatternList as number[],
                     background: {}, // 背景颜色或图片
+                    backgroundColor: '#000000', // 背景纯色
                     font: '微软雅黑',
                     titleFont: '微软雅黑',
                     titleFontSyncGlobal: true,
@@ -110,6 +111,10 @@ export const useGlobalConfig = defineStore('global', {
         // 获取背景图片设置
         getBackground(state) {
             return state.globalConfig.theme.background
+        },
+        // 获取背景颜色
+        getBackgroundColor(state) {
+            return state.globalConfig.theme.backgroundColor
         },
         // 获取字体
         getFont(state) {
@@ -260,6 +265,10 @@ export const useGlobalConfig = defineStore('global', {
         setBackground(background: any) {
             this.globalConfig.theme.background = background
         },
+        // 设置背景颜色
+        setBackgroundColor(backgroundColor: string) {
+            this.globalConfig.theme.backgroundColor = backgroundColor
+        },
         // 设置字体
         setFont(font: any) {
             this.globalConfig.theme.font = font
@@ -306,6 +315,7 @@ export const useGlobalConfig = defineStore('global', {
                     patternColor: '#1b66c9',
                     patternList: defaultPatternList as number[],
                     background: {}, // 背景颜色或图片
+                    backgroundColor: '#000000', // 背景纯色
                     font: '微软雅黑',
                     titleFont: '微软雅黑',
                     titleFontSyncGlobal: true,

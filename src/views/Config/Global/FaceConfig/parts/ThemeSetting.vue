@@ -17,6 +17,7 @@ const { t } = useI18n()
 
 const themeValue = defineModel<string>('themeValue')
 const backgroundImageValue = defineModel<object>('backgroundImageValue')
+const backgroundColorValue = defineModel<string>('backgroundColorValue')
 const cardColorValue = defineModel<string>('cardColorValue')
 const luckyCardColorValue = defineModel<string>('luckyCardColorValue')
 const textColorValue = defineModel<string>('textColorValue')
@@ -68,6 +69,12 @@ const patternColorValue = defineModel<string>('patternColorValue')
           {{ t('sidebar.imagesManagement') }}
         </a>
         {{ t('tooltip.uploadImage') }}</span>
+    </div>
+    <div class="w-full max-w-xs form-control">
+      <label class="label">
+        <span class="label-text">{{ t('table.backgroundColor') }}</span>
+      </label>
+      <ColorPicker v-model="backgroundColorValue" v-model:pure-color="backgroundColorValue" />
     </div>
     <div class="grid w-full grid-cols-2 gap-4">
       <div class="flex flex-col items-center max-w-xs gap-1 form-control">
