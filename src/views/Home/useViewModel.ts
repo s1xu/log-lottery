@@ -147,6 +147,12 @@ export function useViewModel() {
                 element.appendChild(avatarEmpty)
             }
 
+            // 添加副标题元素（用于冒号分隔的描述部分）
+            const subtitle = document.createElement('div')
+            subtitle.className = 'card-subtitle'
+            subtitle.style.display = 'none'
+            element.appendChild(subtitle)
+
             element = useElementStyle({
                 element,
                 person: tableData.value[i],

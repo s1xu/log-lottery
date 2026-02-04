@@ -24,8 +24,6 @@
         right: 0;
         font-weight: bold;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         z-index: 2;
     }
 
@@ -43,6 +41,15 @@
         right: 0;
         bottom: 15px;
         z-index: 2;
+    }
+
+    .card-subtitle {
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        text-align: center;
+        z-index: 2;
+        opacity: 0.85;
     }
 
     .card-avatar {
@@ -90,8 +97,6 @@
         right: 0;
         font-weight: bold;
         white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         // -webkit-animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) both;
         // animation: tracking-in-expand-fwd 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) both;
         // animation-delay: 0.6s;
@@ -112,6 +117,15 @@
         text-align: center;
         z-index: 2;
         bottom: 15px;
+    }
+
+    .card-subtitle {
+        position: absolute;
+        left: 5px;
+        right: 5px;
+        text-align: center;
+        z-index: 2;
+        opacity: 0.85;
     }
 
     .card-avatar {

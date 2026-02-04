@@ -13,7 +13,32 @@ interface IUseElementStyle {
     textSize: number
     mod: 'default' | 'lucky' | 'sphere'
     type?: 'add' | 'change'
+}
 
+/**
+ * @description 解析姓名，支持冒号分隔符切割为主题和描述
+ * @param name 原始姓名
+ * @returns { title: 主题, subtitle: 描述, shouldShrink: 是否需要缩小字号 }
+ */
+function parseNameWithSeparator(name: string): { title: string, subtitle: string, shouldShrink: boolean } {
+    if (!name) {
+        return { title: '', subtitle: '', shouldShrink: false }
+    }
+
+    // 使用冒号作为分隔符
+    const separatorIndex = name.indexOf('：')
+    if (separatorIndex !== -1) {
+        const title = name.substring(0, separatorIndex)
+        const subtitle = name.substring(separatorIndex + 1)
+        return { title, subtitle, shouldShrink: true }
+    }
+
+    // 没有分隔符，超过5个字时仅缩小字号
+    if (name.length > 5) {
+        return { title: name, subtitle: '', shouldShrink: true }
+    }
+
+    return { title: name, subtitle: '', shouldShrink: false }
 }
 export function useElementStyle(props: IUseElementStyle) {
     const { element, person, index, patternList, patternColor, cardColor, cardSize, scale, textSize, mod, type } = props
@@ -53,11 +78,50 @@ export function useElementStyle(props: IUseElementStyle) {
         element.children[0].textContent = person.uid
     }
 
-    element.children[1].style.fontSize = `${textSize * scale}px`
-    element.children[1].style.lineHeight = `${textSize * scale * 3}px`
+    // 解析姓名，支持冒号分隔符切割
+    const { title, subtitle, shouldShrink } = parseNameWithSeparator(person.name)
+
+    // 根据字符长度和卡片宽度动态计算字号，确保一行展示完整
+    // 卡片宽度 cardSize.width，留出左右边距约 10px
+    const availableWidth = cardSize.width * scale - 20
+    const titleLen = title.length
+
+    // 基准：标准字号下约能容纳的字符数（中文字符宽度约等于字号）
+    const baseCharCount = availableWidth / (textSize * scale)
+    let nameFontSize = textSize * scale
+    if (titleLen > baseCharCount) {
+        // 超出可容纳字符数，按比例缩小字号
+        nameFontSize = availableWidth / titleLen
+    }
+    else if (shouldShrink) {
+        nameFontSize = textSize * scale * 0.7
+    }
+    const nameLineHeight = shouldShrink ? nameFontSize * 2 : textSize * scale * 3
+
+    element.children[1].style.fontSize = `${nameFontSize}px`
+    element.children[1].style.lineHeight = `${nameLineHeight}px`
     element.children[1].style.textShadow = `0 0 12px ${rgba(cardColor, 0.95)}`
     if (person.name) {
-        element.children[1].textContent = person.name
+        element.children[1].textContent = title
+    }
+
+    // 处理副标题（描述）- 使用 children[4] 作为副标题元素
+    if (element.children[4]) {
+        if (subtitle) {
+            // 副标题可以换行，使用较大字号
+            const subtitleFontSize = textSize * scale * 0.6
+            element.children[4].style.display = 'block'
+            element.children[4].style.fontSize = `${subtitleFontSize}px`
+            element.children[4].style.lineHeight = `${subtitleFontSize * 1.3}px`
+            element.children[4].style.top = `${40 + nameLineHeight}px`
+            element.children[4].style.whiteSpace = 'normal'
+            element.children[4].style.wordBreak = 'break-all'
+            element.children[4].textContent = subtitle
+        }
+        else {
+            element.children[4].style.display = 'none'
+            element.children[4].textContent = ''
+        }
     }
 
     element.children[2].style.fontSize = `${textSize * scale * 0.5}px`
