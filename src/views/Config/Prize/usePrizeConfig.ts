@@ -22,6 +22,7 @@ export function usePrizeConfig() {
 
     const prizeList = ref(cloneDeep(localPrizeList.value))
     const selectedPrize = ref<IPrizeConfig | null>()
+    const pendingDeleteItem = ref<IPrizeConfig | null>(null)
 
     function selectPrize(item: IPrizeConfig) {
         selectedPrize.value = item
@@ -83,6 +84,18 @@ export function usePrizeConfig() {
         prizeConfig.deletePrizeConfig(item.id)
         prizeList.value = prizeList.value.filter(i => i.id !== item.id)
         toast.success(i18n.global.t('error.deleteSuccess'))
+    }
+
+    function confirmDelItem(item: IPrizeConfig, dialogRef: { showDialog: () => void }) {
+        pendingDeleteItem.value = item
+        dialogRef.showDialog()
+    }
+
+    function handleDelItem() {
+        if (pendingDeleteItem.value) {
+            delItem(pendingDeleteItem.value)
+            pendingDeleteItem.value = null
+        }
     }
     function addPrize() {
         const defaultPrizeCOnfig: IPrizeConfig = {
@@ -196,6 +209,8 @@ export function usePrizeConfig() {
         resetDefault,
         delAll,
         delItem,
+        confirmDelItem,
+        handleDelItem,
         prizeList,
         currentPrize,
         selectedPrize,

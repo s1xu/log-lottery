@@ -1,18 +1,42 @@
 <script setup lang='ts'>
 import { Grip } from 'lucide-vue-next'
+import { ref } from 'vue'
 import { VueDraggable } from 'vue-draggable-plus'
 import { useI18n } from 'vue-i18n'
 import { HoverTip } from '@/components/index'
+import CustomDialog from '@/components/Dialog/index.vue'
 import EditSeparateDialog from '@/components/NumberSeparate/EditSeparateDialog.vue'
 import PageHeader from '@/components/PageHeader/index.vue'
 import { usePrizeConfig } from './usePrizeConfig'
 
-const { addPrize, resetDefault, delAll, delItem, prizeList, currentPrize, selectedPrize, submitData, changePrizePerson, changePrizeStatus, selectPrize, localImageList, exportExcel, importExcel, downloadTemplate } = usePrizeConfig()
+const { addPrize, resetDefault, delAll, confirmDelItem, handleDelItem, prizeList, currentPrize, selectedPrize, submitData, changePrizePerson, changePrizeStatus, selectPrize, localImageList, exportExcel, importExcel, downloadTemplate } = usePrizeConfig()
 const { t } = useI18n()
+
+const delAllDialogRef = ref()
+const delItemDialogRef = ref()
+const resetDefaultDialogRef = ref()
 </script>
 
 <template>
   <div>
+    <CustomDialog
+      ref="delAllDialogRef"
+      :title="t('dialog.titleTip')"
+      :desc="t('dialog.dialogDelAllPrize')"
+      :submit-func="delAll"
+    />
+    <CustomDialog
+      ref="delItemDialogRef"
+      :title="t('dialog.titleTip')"
+      :desc="t('dialog.dialogDelPrize')"
+      :submit-func="handleDelItem"
+    />
+    <CustomDialog
+      ref="resetDefaultDialogRef"
+      :title="t('dialog.titleTip')"
+      :desc="t('dialog.dialogResetDefaultPrize')"
+      :submit-func="resetDefault"
+    />
     <PageHeader :title="t('viewTitle.prizeManagement')">
       <template #buttons>
         <div class="flex w-full gap-3">
@@ -28,10 +52,10 @@ const { t } = useI18n()
           <button class="btn btn-info btn-sm" @click="exportExcel">
             {{ t('button.export') }}
           </button>
-          <button class="btn btn-info btn-sm" @click="resetDefault">
+          <button class="btn btn-info btn-sm" @click="resetDefaultDialogRef.showDialog()">
             {{ t('button.resetDefault') }}
           </button>
-          <button class="btn btn-error btn-sm" @click="delAll">
+          <button class="btn btn-error btn-sm" @click="delAllDialogRef.showDialog()">
             {{ t('button.allDelete') }}
           </button>
         </div>
@@ -149,7 +173,7 @@ const { t } = useI18n()
             <span class="label-text">{{ t('table.operation') }}</span>
           </div>
           <div class="flex gap-2">
-            <button class="btn btn-error btn-xs" @click="delItem(item)">{{ t('button.delete') }}</button>
+            <button class="btn btn-error btn-xs" @click="confirmDelItem(item, delItemDialogRef)">{{ t('button.delete') }}</button>
           </div>
         </label>
       </div>
