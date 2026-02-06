@@ -278,6 +278,11 @@ export const defaultImageList = [
         name: '特别奖',
         url: `${originUrl}/resource/image/image5.png`,
     },
+    {
+        id: '5',
+        name: '背景图',
+        url: '/images/background.png',
+    },
 ]
 export const defaultPatternList = [21, 38, 55, 54, 53, 70, 87, 88, 89, 23, 40, 57, 74, 91, 92, 76, 59, 42, 25, 24, 27, 28, 29, 46, 63, 62, 61, 78, 95, 96, 97, 20, 19, 31, 48, 66, 67, 84, 101, 100, 32, 33, 93, 65, 82, 99]
 
