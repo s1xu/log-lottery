@@ -123,7 +123,11 @@ or
 npm run build
 ```
 
-> 项目思路来源于 <https://github.com/moshang-xc/lottery>
+## Cloudflare Pages 部署
+
+一键跳转到 Cloudflare Pages 控制台创建项目：
+
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-Deploy-F38020?logo=cloudflare&logoColor=white)](https://dash.cloudflare.com/?to=%2F%3Aaccount%2Fworkers-and-pages/create)
 
 
 ## 支持项目
@@ -132,6 +136,7 @@ npm run build
 
 同时也请支持原作者 [LOG1997](https://github.com/LOG1997/log-lottery)。
 
+> 项目思路来源于 <https://github.com/moshang-xc/lottery>
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
