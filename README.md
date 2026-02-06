@@ -127,9 +127,7 @@ npm run build
 
 一键跳转到 Cloudflare Pages 控制台创建项目：
 
-<a href="https://dash.cloudflare.com/?to=%2F%3Aaccount%2Fworkers-and-pages/create" target="_blank">
-  <img src="https://img.shields.io/badge/Cloudflare%20Pages-Deploy-F38020?logo=cloudflare&logoColor=white" alt="Deploy to Cloudflare Pages">
-</a>
+[![Deploy to Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-Deploy-F38020?logo=cloudflare&logoColor=white)](https://dash.cloudflare.com/?to=%2F%3Aaccount%2Fworkers-and-pages/create)
 
 
 ## 支持项目
